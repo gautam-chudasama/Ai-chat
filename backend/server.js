@@ -1,5 +1,3 @@
-// short term memory
-
 require("dotenv").config();
 const app = require("./src/app");
 const { createServer } = require("http");
@@ -9,24 +7,11 @@ const generateResponse = require("./src/service/service.ai");
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://chatbot-bice-five-89.vercel.app/",
   },
 });
 
-const chatHistory = [
-  // {
-  //   role: "user",
-  //   parts: [{ text: "who is the president of russia in 2025?" }],
-  // },
-  // {
-  //   role: "model",
-  //   parts: [
-  //     {
-  //       text: "As of 2025, **Vladimir Putin** will be the President of Russia.",
-  //     },
-  //   ],
-  // },
-];
+const chatHistory = [];
 
 io.on("connection", (socket) => {
   console.log("user connected");
@@ -50,6 +35,6 @@ io.on("connection", (socket) => {
   });
 });
 
-httpServer.listen(3000, () => {
+httpServer.listen(process.env.PORT, () => {
   console.log("server is listening on port 3000");
 });
