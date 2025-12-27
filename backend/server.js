@@ -7,7 +7,10 @@ const generateResponse = require("./src/service/service.ai");
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://chatbot-bice-five-89.vercel.app",
+    origin: [
+      "https://chatbot-bice-five-89.vercel.app",
+      "https://chatbot-gautam-chudasamas-projects.vercel.app",
+    ],
   },
 });
 
