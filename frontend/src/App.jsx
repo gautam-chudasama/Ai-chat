@@ -33,7 +33,7 @@ function App() {
   }, [messages]);
 
   useEffect(() => {
-    let socketInstance = io("http://localhost:3000");
+    let socketInstance = io("https://chatbot-ephz.onrender.com/");
     setsocket(socketInstance);
 
     socketInstance.on("ai-message-response", (response) => {
