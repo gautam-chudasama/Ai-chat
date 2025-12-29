@@ -4,6 +4,8 @@ const { createServer } = require("http");
 const { Server } = require("socket.io");
 const generateResponse = require("./src/service/service.ai");
 
+const PORT = process.env.PORT;
+
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
@@ -25,7 +27,7 @@ io.on("connection", (socket) => {
 
   // event to receive messages from the client(listener)
   socket.on("ai-message", async (data) => {
-    console.log("Received message: ", data);
+    // console.log("Received message: ", data);
 
     chatHistory.push({ role: "user", parts: [{ text: data }] });
 
@@ -38,6 +40,6 @@ io.on("connection", (socket) => {
   });
 });
 
-httpServer.listen(process.env.PORT, () => {
-  console.log("server is listening on port 3000");
+httpServer.listen(PORT, () => {
+  console.log(`Server + Socket.IO running on port ${PORT}`);
 });
